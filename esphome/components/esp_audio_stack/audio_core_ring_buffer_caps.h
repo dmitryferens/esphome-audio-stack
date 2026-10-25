@@ -127,7 +127,7 @@ inline CapsRingBuffer::~CapsRingBuffer() {
   if (this->handle_() != nullptr) {
     vRingbufferDelete(this->handle_());
     heap_caps_free(this->storage_);
-    this->handle_() = nullptr;
+    this->handle_ = nullptr;
     this->storage_ = nullptr;
     this->size_ = 0;
   }
@@ -140,7 +140,7 @@ inline bool CapsRingBuffer::install(size_t len, uint32_t caps, RingbufferType_t 
   this->storage_ = mem;
   this->size_ = len;
   this->type_ = type;
-  this->handle_() = xRingbufferCreateStatic(len, type, mem, &this->structure_);
+  this->handle_ = xRingbufferCreateStatic(len, type, mem, &this->structure_);
   if (this->handle_() == nullptr) {
     heap_caps_free(mem);
     this->storage_ = nullptr;
