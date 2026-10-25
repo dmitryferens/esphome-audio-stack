@@ -124,8 +124,8 @@ inline const char *policy_str(RingBufferPolicy p) {
 }  // namespace detail
 
 inline CapsRingBuffer::~CapsRingBuffer() {
-  if (this->handle_ != nullptr) {
-    vRingbufferDelete(this->handle_);
+  if (this->handle_() != nullptr) {
+    vRingbufferDelete(this->handle_());
     heap_caps_free(this->storage_);
     this->handle_ = nullptr;
     this->storage_ = nullptr;
